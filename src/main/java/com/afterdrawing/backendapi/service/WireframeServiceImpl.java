@@ -27,11 +27,9 @@ import com.google.cloud.automl.v1.PredictRequest;
 import com.google.cloud.automl.v1.PredictResponse;
 import com.google.cloud.automl.v1.PredictionServiceClient;
 import com.google.protobuf.ByteString;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.desktop.OpenFilesHandler;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -39,9 +37,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
-import java.util.Optional;
+
 @Service
 public class WireframeServiceImpl implements WireframeService {
 
