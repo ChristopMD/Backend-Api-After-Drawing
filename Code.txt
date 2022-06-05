@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+void main() => runApp(const MyApp());
+class MyApp extends StatelessWidget
+{
+    const MyApp({Key? key}) : super(key: key);
+    @override
+    Widget build(BuildContext context)
+    {
+        return MaterialApp
+            (
+            home: Scaffold
+                (
+                appBar: AppBar(),
+                body: Stack
+                    (
+                    children: <Widget>
+                        [
+                        Container
+                            (
+                            alignment: Alignment(-0.012103617191314697, -0.02105247974395752),
+                            padding: const EdgeInsets.all(10),
+                            child: TextField
+                                (
+                                decoration: const InputDecoration
+                                    (
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Input Text',
+                                    )
+                                )
+                            ),
+                        Container
+                            (
+                            alignment: Alignment(0.1381455659866333, 0.7007522583007812),
+                            padding: const EdgeInsets.all(10),
+                            child: TextButton
+                                (
+                                onPressed: ()
+                                {
+                                    //Do Something
+                                },
+                                child: const Text('Insert Text',),
+                                style: TextButton.styleFrom
+                                    (
+                                    primary: Colors.white,
+                                    backgroundColor: Colors.blue,
+                                    fixedSize: Size(120.0,40.0),
+                                    )
+                                )
+                            ),
+                        Container
+                            (
+                            alignment: Alignment(-0.0016378164291381836, 0.1739751100540161),
+                            padding: const EdgeInsets.all(10),
+                            child: TextButton
+                                (
+                                onPressed: ()
+                                {
+                                    //Do Something
+                                },
+                                child: const Text('Insert Text',),
+                                style: TextButton.styleFrom
+                                    (
+                                    primary: Colors.white,
+                                    backgroundColor: Colors.blue,
+                                    fixedSize: Size(120.0,40.0),
+                                    )
+                                )
+                            ),
+                        Container
+                            (
+                            alignment: Alignment(0.024251937866210938, -0.2959892153739929),
+                            padding: const EdgeInsets.all(10),
+                            child: TextField
+                                (
+                                decoration: const InputDecoration
+                                    (
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Input Text',
+                                    )
+                                )
+                            ),
+                        ]
+                    )
+                )
+            );
+    }
+}

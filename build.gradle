@@ -1,0 +1,90 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+
+}
+
+group = 'com.AfterDrawaing'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.6.5'
+    // https://mvnrepository.com/artifact/dev.samstevens.totp/totp
+    implementation group: 'dev.samstevens.totp', name: 'totp', version: '1.7.1'
+    // https://mvnrepository.com/artifact/org.ocpsoft.prettytime/prettytime
+    implementation group: 'org.ocpsoft.prettytime', name: 'prettytime', version: '5.0.2.Final'
+
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.3'
+    // https://mvnrepository.com/artifact/junit/junit
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    // https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine
+    testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.8.2'
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
+    testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '7.2.3'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    //implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    //implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    //implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    // https://mvnrepository.com/artifact/javax.validation/validation-api
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
+    // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.0.0'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
+    //implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.6.5'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.6'
+    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-data-rest
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-data-rest', version: '1.6.6'
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat
+    //implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '2.6.6'
+    implementation 'org.apache.maven.plugins:maven-compiler-plugin:3.10.1'
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-java
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '7.3.1'
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-core
+    implementation group: 'io.cucumber', name: 'cucumber-core', version: '7.3.1'
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
+    testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '7.3.1'
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-spring
+    implementation group: 'io.cucumber', name: 'cucumber-spring', version: '7.3.1'
+    // https://mvnrepository.com/artifact/com.sun.jersey.contribs/jersey-multipart
+    implementation group: 'com.sun.jersey.contribs', name: 'jersey-multipart', version: '1.19.4'
+    // https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-multipart
+    implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-multipart', version: '2.25'
+    //Google Automl vision dependencies
+    //dependencies for automl vision
+    implementation platform('com.google.cloud:libraries-bom:25.1.0')
+    implementation 'com.google.cloud:google-cloud-automl'
+
+
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
