@@ -7,8 +7,9 @@ plugins {
 
 group = 'com.AfterDrawaing'
 version = '0.0.1-SNAPSHOT'
+targetCompatibility = '11.0'
 sourceCompatibility = '11'
-targetCompatibility = 11.0
+
 
 configurations {
     compileOnly {
