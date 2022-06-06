@@ -91,7 +91,7 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-task stage(type: Copy, dependsOn: [clean, build]) {
+tasks.stage(type: Copy, dependsOn: [clean, build]) {
     from jar.archivePath
     into project.rootDir
     rename {
