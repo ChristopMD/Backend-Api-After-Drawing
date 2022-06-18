@@ -4,10 +4,12 @@ import com.afterdrawing.backendapi.core.entity.PasswordResetToken;
 import com.afterdrawing.backendapi.core.entity.User;
 import com.afterdrawing.backendapi.core.repository.PasswordResetTokenRepository;
 import com.afterdrawing.backendapi.core.repository.UserRepository;
+import com.afterdrawing.backendapi.exception.ResourceAlreadyExistingException;
 import com.afterdrawing.backendapi.exception.ResourceNotFoundException;
 import com.afterdrawing.backendapi.resource.authentication.*;
 import com.afterdrawing.backendapi.sercurity.JwtCenter;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.core.RepositoryCreationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -46,22 +48,30 @@ public class AuthenticationService {
 
 
     @Transactional
-    public void signUp(SignUpResource signUpResource) {
+    public ResponseEntity<?> signUp(SignUpResource signUpResource) {
         // Creating a new user based of registration dto
-        User user = new User();
-        user.setEmail(signUpResource.getEmail());
-        user.setFirstName(signUpResource.getFirstName());
-        user.setLastName(signUpResource.getLastName());
-        user.setUserName(signUpResource.getUserName());
-        user.setPassword(passwordEncoder.encode(signUpResource.getPassword()));
+        Optional<User> existingUser = userRepository.findByEmail(signUpResource.getEmail());
 
-        user.setUsing2FA(false);
+        if(existingUser.isEmpty()){
+            User user = new User();
+            user.setEmail(signUpResource.getEmail());
+            user.setFirstName(signUpResource.getFirstName());
+            user.setLastName(signUpResource.getLastName());
+            user.setUserName(signUpResource.getUserName());
+            user.setPassword(passwordEncoder.encode(signUpResource.getPassword()));
 
-        user.setEnabled(false);
+            user.setUsing2FA(false);
 
-        // Saving the new user to the database
-        userRepository.save(user);
-        // User e-mail verification
+            user.setEnabled(false);
+
+            // Saving the new user to the database
+            userRepository.save(user);
+            // User e-mail verification
+            return ResponseEntity.ok(user);
+        } else {
+            throw new ResourceAlreadyExistingException("Usuario con email ya registrado");
+        }
+
 
     }
 
@@ -128,18 +138,23 @@ public class AuthenticationService {
         }
     }*/
 
-    public void forgotPassword(ForgotPasswordResource forgotPasswordRequest) {
+    public ResponseEntity<?> forgotPassword(ForgotPasswordResource forgotPasswordRequest) {
         // Getting user from email parameter
         Optional<User> user = userRepository.findByEmail(forgotPasswordRequest.getEmail());
-        if(!user.isEmpty()){
+        if(user.isPresent()){
             // Generate password reset token
-            String token = UUID.randomUUID().toString();
+            /*String token = UUID.randomUUID().toString();
             PasswordResetToken passwordResetToken = new PasswordResetToken();
             passwordResetToken.setToken(token);
             passwordResetToken.setUser(user.get());
-            passwordResetTokenRepository.save(passwordResetToken);
-
+            passwordResetTokenRepository.save(passwordResetToken);*/
+            String passwordCodec = passwordEncoder.encode(forgotPasswordRequest.getNewPassword());
+            user.get().setPassword(passwordCodec);
+            userRepository.save(user.get());
+            return ResponseEntity.ok(forgotPasswordRequest);
             // TODO: Send an email to the user with the token
+        } else {
+            throw new ResourceNotFoundException("Usuario no existente");
         }
     }
 
@@ -169,7 +184,7 @@ public class AuthenticationService {
                 throw new ResourceNotFoundException("Invalid password");
             }
         }else{
-            throw new ResourceNotFoundException("Invalid user");
+            throw new ResourceNotFoundException("Usuario no existente");
         }
 
 

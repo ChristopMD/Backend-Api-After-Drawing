@@ -21,9 +21,9 @@ public class AuthenticationController {
 
     @Operation(summary = "Create a user with encoded password (RECOMMENDED)", description = "Create a user with registered encoded paswword in the database")
     @PostMapping("/sign-up")
-    public ResponseEntity<String> signUp(@RequestBody SignUpResource registrationRequest){
-        authenticationService.signUp(registrationRequest);
-        return new ResponseEntity<>("User registration was successfull", HttpStatus.OK);
+    public ResponseEntity<?> signUp(@RequestBody SignUpResource registrationRequest){
+        return authenticationService.signUp(registrationRequest);
+        //return new ResponseEntity<>("User registration was successfull", HttpStatus.OK);
     }
 
     @Operation(summary = "Login", description = "login with valid user credentials")
@@ -52,9 +52,9 @@ public class AuthenticationController {
     }*/
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<String> forgotPassword(@Valid @RequestBody ForgotPasswordResource forgotPasswordRequest){
-        authenticationService.forgotPassword(forgotPasswordRequest);
-        return new ResponseEntity<>("Petition sent", HttpStatus.OK);
+    public ResponseEntity<?> forgotPassword(@Valid @RequestBody ForgotPasswordResource forgotPasswordRequest){
+        return authenticationService.forgotPassword(forgotPasswordRequest);
+        //return new ResponseEntity<>("Petition sent", HttpStatus.OK);
     }
 
     /*@PostMapping("/reset-password")

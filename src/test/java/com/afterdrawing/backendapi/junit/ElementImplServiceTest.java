@@ -1,4 +1,3 @@
-/*
 package com.afterdrawing.backendapi.junit;
 
 import com.afterdrawing.backendapi.core.entity.Element;
@@ -345,4 +344,3 @@ public class ElementImplServiceTest {
         AssertionsForClassTypes.assertThat(foundElements.getContent()).isEqualTo(Page.empty().getContent());
     }
 }
-*/

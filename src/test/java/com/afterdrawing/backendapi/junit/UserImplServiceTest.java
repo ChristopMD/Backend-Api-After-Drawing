@@ -1,4 +1,3 @@
-/*
 package com.afterdrawing.backendapi.junit;
 
 import com.afterdrawing.backendapi.core.entity.User;
@@ -170,4 +169,3 @@ public class UserImplServiceTest {
 
     }
 }
-*/
